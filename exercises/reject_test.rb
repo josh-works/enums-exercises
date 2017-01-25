@@ -1,6 +1,5 @@
 gem 'minitest'
 require 'minitest/autorun'
-require 'minitest/pride'
 
 class RejectTest < Minitest::Test
 
