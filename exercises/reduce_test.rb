@@ -1,3 +1,4 @@
+require 'pry'
 gem 'minitest'
 require 'minitest/autorun'
 
@@ -26,35 +27,36 @@ class ReduceTest < Minitest::Test
   end
 
   def test_capitalize_keywords_in_phrase_one_fish_two_fish_red_fish_blue_fish
-    skip
     keywords = ["fish", "blue"]
-    # initial value is 'one fish two fish red fish blue fish'
-    # Your code goes here
+    result = 'one fish two fish red fish blue fish'
+    result.split().reduce do |new_array, word|
+      binding.pry
+      new_array + (word.upcase) if keywords.include?(word)
+    end
     assert_equal 'one FISH two FISH red FISH BLUE FISH', result
   end
 
   def test_divide_560_by_a_bunch_of_numbers
-    skip
     numbers = [2, 2, 2, 5, 7]
-    # initial value is 560
-    # Your code goes here
+    result = 560/numbers.reduce(:*)
     assert_equal 2, result
   end
 
   def test_subtract_smallest_values_from_100
-    skip
     elements = [[8, 5, 3], [1, 9, 11], [4, 7, 2], [19, 34, 6]]
-    # initial value is 100
-    # Your code goes here
+    result = 100 - elements.reduce(0) do |sum, array|
+      sum + array.sort.first
+    end
     assert_equal 88, result
   end
 
   def test_add_all_the_second_values_together
-    skip
     elements = [["a", 1], ["b", 9], ["c", 21]]
-    # initial value is 0
-    # Your code goes here
+    result = elements.reduce(0) do |sum, array|
+      sum += array.last
+    end
     assert_equal 31, result
   end
-
 end
+
+# total => 7
