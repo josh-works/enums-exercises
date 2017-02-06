@@ -18,7 +18,8 @@ class GroupByPatternTest < Minitest::Test
     numbers = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
     odd_and_even = Hash.new {|hash, key| hash[key] = []}
     numbers.each do |number|
-      # Your code goes here
+      odd_and_even["odd"] << number if number.odd?
+      odd_and_even["even"] << number if number.even?
     end
     expected = {1=>[1, 1, 3, 5, 13, 21, 55], 0=>[2, 8, 34]}
     assert_equal expected, odd_and_even
